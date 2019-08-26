@@ -20,10 +20,11 @@
   "author": "Andrey Sidorov <sidorares@yandex.ru>",
   "license": "MIT",
   "dependencies": {
-    "bignumber.js": "^7.0.0"
+    "bignumber.js": "^9.0.0",
+    "long": "^4.0.0"
   },
   "devDependencies": {
-    "chai": "~1.9.1",
-    "mocha": "~1.20.1"
+    "chai": "4.2.0",
+    "mocha": "6.2.0"
   }
 }

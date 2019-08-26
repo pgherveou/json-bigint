@@ -22,12 +22,7 @@ describe("Testing 'strict' option", function(){
         function tryParse() {
             result = JSONstrict.parse(dupkeys);
         }
-        expect(tryParse).to.throw({ 
-            name: 'SyntaxError',
-            message: 'Duplicate key "dupkey"',
-            at: 33,
-            text: '{ "dupkey": "value 1", "dupkey": "value 2"}' 
-        });
+        expect(tryParse).to.throw('Duplicate key "dupkey"');
         expect(result).to.equal("before");
         done();
     });
