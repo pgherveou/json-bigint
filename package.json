@@ -3,6 +3,7 @@
   "version": "0.3.0",
   "description": "JSON.parse with bigints support",
   "main": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha -R spec --check-leaks test/*-test.js"
   },
