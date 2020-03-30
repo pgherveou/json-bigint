@@ -1,5 +1,5 @@
 {
-  "name": "json-bigint",
+  "name": "@pgherveou/json-bigint",
   "version": "1.0.0",
   "description": "JSON.parse with bigints support",
   "main": "index.js",
