@@ -1,9 +1,9 @@
 {
   "name": "@pgherveou/json-bigint",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "JSON.parse with bigints support",
   "main": "lib/index.js",
-  "typings": "index.d.ts",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "test": "jest",
     "build": "tsc -b"
