@@ -3,7 +3,9 @@
 import { stringify } from "./stringify";
 import { parse } from "./parse";
 
-export default {
+const JSON = {
   stringify,
   parse,
 };
+
+export default JSON;
