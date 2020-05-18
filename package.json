@@ -6,7 +6,8 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "test": "jest",
-    "build": "tsc -b"
+    "build": "tsc -b",
+    "cleanup": "git clean -dfX -e '!.vscode' -e '!snippet.*'"
   },
   "repository": {
     "type": "git",
