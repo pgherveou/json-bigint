@@ -67,8 +67,8 @@ it("should customize stringify when using noQuote with replacer", () => {
   };
 
   expect(
-    stringify(input, (_: any, val: any) => {
-      return val instanceof MyEnum ? noQuote(val) : val;
-    })
+    stringify(input, (_: any, val: any) =>
+      val instanceof MyEnum ? noQuote(val) : val
+    )
   ).toEqual(`{"foo":MyEnum.one}`);
 });

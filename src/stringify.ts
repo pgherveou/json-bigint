@@ -5,19 +5,18 @@ const escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\
 let gap: string;
 let indent: string;
 
-const noQuoteSym = Symbol();
-
-export function noQuote(val: any) {
-  if (typeof val === "object") {
-    val[noQuoteSym] = true;
-    return val;
+class NoQuoteWrapper {
+  static isNoQuoteWrapper(val: any) {
+    return val instanceof NoQuoteWrapper;
   }
-
-  throw new Error("noQuote can only be used with object type");
+  constructor(private val: any) {}
+  toString() {
+    return String(this.val);
+  }
 }
 
-function hasNoQuoteSymbol(val: any) {
-  return val && val[noQuoteSym];
+export function noQuote(val: any) {
+  return new NoQuoteWrapper(val);
 }
 
 const meta: Record<string, string> = {
@@ -69,7 +68,7 @@ function str(key: string | number, holder: any): string {
   if (
     Long.isLong(value) ||
     BigNumber.isBigNumber(value) ||
-    hasNoQuoteSymbol(value)
+    NoQuoteWrapper.isNoQuoteWrapper(value)
   ) {
     return value.toString();
   }
@@ -91,7 +90,7 @@ function str(key: string | number, holder: any): string {
     if (
       Long.isLong(value) ||
       BigNumber.isBigNumber(value) ||
-      hasNoQuoteSymbol(value)
+      NoQuoteWrapper.isNoQuoteWrapper(value)
     ) {
       return value.toString();
     }
