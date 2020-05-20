@@ -19,6 +19,15 @@ export function noQuote(val: any) {
   return new NoQuoteWrapper(val);
 }
 
+function useNoQuote(value: any) {
+  return (
+    Long.isLong(value) ||
+    BigNumber.isBigNumber(value) ||
+    NoQuoteWrapper.isNoQuoteWrapper(value) ||
+    typeof value === "bigint"
+  );
+}
+
 const meta: Record<string, string> = {
   // table of character substitutions
   "\b": "\\b",
@@ -65,11 +74,7 @@ function str(key: string | number, holder: any): string {
   let partial;
   let value = holder[key];
 
-  if (
-    Long.isLong(value) ||
-    BigNumber.isBigNumber(value) ||
-    NoQuoteWrapper.isNoQuoteWrapper(value)
-  ) {
+  if (useNoQuote(value)) {
     return value.toString();
   }
 
@@ -87,11 +92,7 @@ function str(key: string | number, holder: any): string {
   if (typeof rep === "function") {
     value = rep.call(holder, key, value);
 
-    if (
-      Long.isLong(value) ||
-      BigNumber.isBigNumber(value) ||
-      NoQuoteWrapper.isNoQuoteWrapper(value)
-    ) {
+    if (useNoQuote(value)) {
       return value.toString();
     }
   }

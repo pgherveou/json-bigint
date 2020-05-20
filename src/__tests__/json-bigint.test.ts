@@ -53,6 +53,11 @@ it("Should show JSON does support bigint parse/stringify roundtrip", () => {
   expect(output).toEqual(inputWithBigNumber);
 });
 
+it("should stringify bigint values", () => {
+  const input = { val: BigInt(1) };
+  expect(stringify(input)).toEqual(`{"val":1}`);
+});
+
 it("should customize stringify when using noQuote", () => {
   const input = {
     foo: noQuote(MyEnum.one),
