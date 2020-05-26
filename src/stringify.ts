@@ -179,7 +179,7 @@ function str(key: string | number, holder: any): string {
       return v;
 
     default:
-      throw new Error(`Unknown type ${typeof value}`);
+      return "";
   }
 }
 

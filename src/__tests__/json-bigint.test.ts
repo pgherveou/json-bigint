@@ -53,6 +53,11 @@ it("Should show JSON does support bigint parse/stringify roundtrip", () => {
   expect(output).toEqual(inputWithBigNumber);
 });
 
+it("should stringify undefined values", () => {
+  const input = { val: undefined };
+  expect(stringify(input)).toEqual(`{}`);
+});
+
 it("should stringify bigint values", () => {
   const input = { val: BigInt(1) };
   expect(stringify(input)).toEqual(`{"val":1}`);
