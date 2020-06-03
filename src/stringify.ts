@@ -4,7 +4,6 @@ import Long from "long";
 const escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
 let gap: string;
 let indent: string;
-let useToJSON = true;
 
 class NoQuoteWrapper {
   static isNoQuoteWrapper(val: any) {
@@ -81,7 +80,6 @@ function str(key: string | number, holder: any): string {
 
   // If the value has a toJSON method, call it to obtain a replacement value.
   if (
-    useToJSON &&
     value &&
     typeof value === "object" &&
     typeof value.toJSON === "function"
@@ -188,14 +186,11 @@ function str(key: string | number, holder: any): string {
 export function stringify(
   value: any,
   replacer?: any,
-  space?: string | number,
-  useToJSONReplacement: boolean = true
+  space?: string | number
 ): string {
   let i: number;
   gap = "";
   indent = "";
-
-  useToJSON = useToJSONReplacement;
 
   // If the space parameter is a number, make an indent string containing that
   // many spaces.

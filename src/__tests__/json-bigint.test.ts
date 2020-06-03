@@ -16,13 +16,6 @@ class MyEnum {
   }
 }
 
-class ValueWrapper {
-  constructor(public value: number) {}
-  toJSON() {
-    return this.value;
-  }
-}
-
 const inputWithBigNumber =
   '{"big":9223372036854775807,"bigDecimal":9223372036854775807.1,"small":123}';
 
@@ -88,36 +81,4 @@ it("should customize stringify when using noQuote with replacer", () => {
       val instanceof MyEnum ? noQuote(val) : val
     )
   ).toEqual(`{"foo":MyEnum.one}`);
-});
-
-it("should use useToJSON = false stringify parameter", () => {
-  const data = { value: new ValueWrapper(1) };
-
-  expect(
-    stringify(data, (_: any, val: any) => {
-      expect(val).not.toBeInstanceOf(ValueWrapper);
-      return val;
-    })
-  ).toEqual(`{"value":1}`);
-});
-
-it("should use useToJSON = true stringify parameter", () => {
-  const data = { value: new ValueWrapper(1) };
-  expect.assertions(2);
-
-  expect(
-    stringify(
-      data,
-      (key: any, val: any) => {
-        if (key === "value") {
-          expect(val).toBeInstanceOf(ValueWrapper);
-          return val.value;
-        }
-
-        return val;
-      },
-      "",
-      false
-    )
-  ).toEqual(`{"value":1}`);
 });
