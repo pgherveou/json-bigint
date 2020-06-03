@@ -120,7 +120,7 @@ function str(key: string | number, holder: any): string {
       partial = [];
 
       // Is the value an array?
-      if (Object.prototype.toString.apply(value) === "[object Array]") {
+      if (Array.isArray(value)) {
         // The value is an array. Stringify every element. Use null as a placeholder
         // for non-JSON values.
 
